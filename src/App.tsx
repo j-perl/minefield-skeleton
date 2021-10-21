@@ -1,58 +1,87 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import styled from "styled-components";
 
-function App() {
+const AppHeader = styled.header`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+`
+
+const AppLogo = styled.img`
+  @media (prefers-reduced-motion: no-preference) {
+    & {
+      animation: App-logo-float infinite 3s ease-in-out;
+    }
+  }
+`
+
+const AppLink = styled.a`
+  color: rgb(112, 76, 182);
+`
+
+const App = styled((props: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
+    <div className={props.className}>
+      <AppHeader>
+        <AppLogo src={logo} alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <span>
           <span>Learn </span>
-          <a
-            className="App-link"
+          <AppLink
             href="https://reactjs.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
             React
-          </a>
+          </AppLink>
           <span>, </span>
-          <a
-            className="App-link"
+          <AppLink
             href="https://redux.js.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Redux
-          </a>
+          </AppLink>
           <span>, </span>
-          <a
-            className="App-link"
+          <AppLink
             href="https://redux-toolkit.js.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Redux Toolkit
-          </a>
+          </AppLink>
           ,<span> and </span>
-          <a
-            className="App-link"
+          <AppLink
             href="https://react-redux.js.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
             React Redux
-          </a>
+          </AppLink>
         </span>
-      </header>
+      </AppHeader>
     </div>
   );
-}
+})`
+  text-align: center;
+  
+  @keyframes App-logo-float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+`
 
 export default App;
