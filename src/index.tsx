@@ -5,11 +5,33 @@ import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    }
+`
+
+const theme = {}
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+        <ThemeProvider theme={theme}>
+            <App />
+            <GlobalStyle />
+        </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
